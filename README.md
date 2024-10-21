@@ -1,20 +1,20 @@
-# Cofrinho Java - Sistema de Gerenciamento de Moedas
+# Cofrinho Java - Currency Management System 🐖
 
-## Descrição
+## Description
 
-Este projeto implementa um sistema simples de gerenciamento de moedas chamado **Cofrinho**. O programa permite que o usuário adicione, remova e liste diferentes tipos de moedas, como **Dólar**, **Euro** e **Real**, além de calcular o valor total convertido para a moeda **Real**.
+This project implements a simple currency management system called **Cofrinho**. The program allows users to add, remove, and list different types of currencies, such as **Dollar**, **Euro**, and **Real**, as well as calculate the total value converted to the **Brazilian Real**.
 
-O projeto foi desenvolvido em **Java** usando o **Maven** como ferramenta de build. Ele contém funcionalidades básicas de interação por meio de um menu no console, permitindo ao usuário manipular moedas e verificar o saldo total convertido.
+The project was developed in **Java** using **Maven** as the build tool. It contains basic functionalities for interacting through a console menu, allowing users to manage currencies and check the total balance converted to Real.
 
-## Funcionalidades
+## Features
 
-- Adicionar moedas de diferentes tipos (Dólar, Euro e Real).
-- Remover um valor específico de uma moeda.
-- Listar todas as moedas presentes no cofrinho.
-- Calcular o valor total de todas as moedas convertidas para Reais.
-- Sair do programa.
+- Add different types of currencies (Dollar, Euro, and Real).
+- Remove a specific value from an existing currency.
+- List all the currencies stored in the piggy bank.
+- Calculate the total value of all currencies converted to Brazilian Real.
+- Exit the program.
 
-## Estrutura do Projeto
+## Project Structure
 
 ```plaintext
 repo/
@@ -32,83 +32,83 @@ repo/
 └── README.md
 ```
 
-- **`Cofrinho.java`**: Classe que gerencia as operações de adição, remoção e listagem de moedas.
-- **`Moeda.java`**: Classe abstrata que define o comportamento comum de todas as moedas.
-- **`Dolar.java`**, **`Euro.java`**, **`Real.java`**: Subclasses de `Moeda`, que implementam os métodos específicos de cada moeda.
-- **`pom.xml`**: Arquivo de configuração do Maven.
+- **`Cofrinho.java`**: Class that manages the operations of adding, removing, and listing currencies.
+- **`Moeda.java`**: Abstract class that defines the common behavior for all currencies.
+- **`Dolar.java`**, **`Euro.java`**, **`Real.java`**: Subclasses of `Moeda` that implement the specific methods for each currency.
+- **`pom.xml`**: Maven configuration file.
 
-## Requisitos
+## Requirements
 
-- **Java 11** ou superior (preferencialmente Java 17).
-- **Maven** para build e gerenciamento de dependências.
+- **Java 11** or higher (preferably Java 17).
+- **Maven** for building and dependency management.
 
-## Como Rodar o Projeto
+## How to Run the Project
 
-### 1. Clonar o Repositório
+### 1. Clone the Repository
 
-Clone o repositório do projeto para o seu ambiente local:
+Clone the project repository to your local environment:
 
 ```bash
-git clone https://github.com/seu-usuario/cofrinho.git
+git clone https://github.com/your-username/cofrinho.git
 cd cofrinho
 ```
 
-### 2. Compilar o Projeto com Maven
+### 2. Compile the Project with Maven
 
-Execute o Maven para compilar o projeto e gerar o JAR executável:
+Run Maven to compile the project and generate the executable JAR:
 
 ```bash
 mvn clean package
 ```
 
-### 3. Executar o JAR
+### 3. Run the JAR
 
-Depois que o JAR for gerado na pasta `target/`, você pode rodá-lo com o comando:
+Once the JAR is generated in the `target/` folder, you can run it with the command:
 
 ```bash
 java -jar cofrinho.jar
 ```
 
-Isso iniciará o programa e mostrará o menu de operações no terminal.
+This will start the program and display the operations menu in the terminal.
 
-## Como Usar o Programa
+## How to Use the Program
 
-O programa oferece um menu interativo com as seguintes opções:
+The program offers an interactive menu with the following options:
 
 ```
 Menu:
-1 - Adicionar moeda
-2 - Remover moeda
-3 - Listar moedas
-4 - Calcular valor total convertido para Real
-5 - Sair
+1 - Add currency
+2 - Remove currency
+3 - List currencies
+4 - Calculate total value converted to Real
+5 - Exit
 ```
 
-### Exemplo de Uso
+### Usage Example
 
-1. **Adicionar uma moeda**:
-   - O programa solicitará o tipo de moeda (Dólar, Euro, Real) e o valor.
-   - Exemplo: Adicionar 10 Dólares.
+1. **Add a currency**:
+   - The program will ask for the type of currency (Dollar, Euro, Real) and the value.
+   - Example: Add 10 Dollars.
 
-2. **Remover um valor de uma moeda**:
-   - O programa solicitará o tipo de moeda e o valor a ser subtraído da moeda existente.
-   - Exemplo: Remover 5 Dólares de uma moeda que tem 10 Dólares.
+2. **Remove a value from a currency**:
+   - The program will ask for the type of currency and the amount to be subtracted from the existing currency.
+   - Example: Remove 5 Dollars from a currency that has 10 Dollars.
 
-3. **Listar as moedas**:
-   - Exibe todas as moedas presentes no cofrinho, incluindo o tipo e o valor de cada uma.
+3. **List the currencies**:
+   - Displays all currencies stored in the piggy bank, including the type and value of each.
 
-4. **Calcular o valor total convertido para Real**:
-   - O programa exibirá o valor total das moedas convertidas para Reais, considerando as taxas de conversão configuradas.
+4. **Calculate the total value converted to Real**:
+   - The program will display the total value of the currencies converted to Brazilian Real, based on the configured exchange rates.
 
-5. **Sair**:
-   - Finaliza o programa.
+5. **Exit**:
+   - Exits the program.
 
-## Taxas de Conversão Utilizadas
+## Exchange Rates Used
 
-- **Dólar**: 1 Dólar = 5.00 Reais
+- **Dollar**: 1 Dollar = 5.00 Reais
 - **Euro**: 1 Euro = 6.00 Reais
-- **Real**: Não há conversão, o valor já está em Reais.
+- **Real**: No conversion needed, as the value is already in Reais.
 
-## Licença
+## License
 
 MIT.
