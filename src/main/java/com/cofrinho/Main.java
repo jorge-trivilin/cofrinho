@@ -6,13 +6,25 @@ import java.util.Scanner;
  * Classe principal que implementa o sistema de gerenciamento de um cofrinho de moedas.
  * 
  * <p>
- * O programa permite que o usuário adicione, remova, liste moedas no cofrinho e
- * calcule o valor total convertido para a moeda Real.
+ * Este programa simula um cofrinho que permite ao usuário adicionar moedas de diferentes
+ * tipos (Dólar, Euro, Real), remover uma quantidade específica de uma moeda e listar todas
+ * as moedas presentes no cofrinho. Além disso, o programa pode calcular o valor total
+ * convertido para Reais de todas as moedas armazenadas.
  * </p>
  * 
  * <p>
- * A interação com o usuário é realizada por meio de um menu de opções, que
- * executa diferentes operações baseadas na entrada do usuário.
+ * A interação com o usuário é realizada por meio de um menu de opções que inclui:
+ * </p>
+ * <ul>
+ * <li>Adicionar uma moeda ao cofrinho, especificando o tipo e o valor da moeda.</li>
+ * <li>Remover uma quantidade específica de uma moeda existente no cofrinho.</li>
+ * <li>Listar todas as moedas presentes no cofrinho.</li>
+ * <li>Calcular o valor total de todas as moedas convertidas em Reais.</li>
+ * <li>Encerrar o programa.</li>
+ * </ul>
+ * 
+ * <p>
+ * O programa continua executando até que o usuário escolha a opção de sair.
  * </p>
  */
 
@@ -20,14 +32,9 @@ public class Main {
     /**
      * Método principal que inicia a aplicação de gerenciamento do cofrinho.
      * <p>
-     * O usuário pode realizar as seguintes operações:
-     * <ul>
-     * <li>Adicionar uma moeda ao cofrinho.</li>
-     * <li>Remover uma moeda.</li>
-     * <li>Listar todas as moedas no cofrinho.</li>
-     * <li>Calcular o valor total convertido em Real.</li>
-     * <li>Sair do programa.</li>
-     * </ul>
+     * O usuário interage com um menu que permite adicionar moedas, remover
+     * valores de moedas, listar todas as moedas e calcular o valor total convertido
+     * em Reais. O loop do menu continua até que o usuário selecione a opção de sair.
      * </p>
      * 
      * @param args Argumentos da linha de comando (não utilizados).
@@ -70,8 +77,13 @@ public class Main {
         scanner.close();
     }
 
-        /**
+     /**
      * Adiciona uma moeda ao cofrinho com base na escolha do usuário.
+     * <p>
+     * Este método apresenta ao usuário uma lista de tipos de moedas (Dólar, Euro, Real)
+     * e solicita o valor da moeda a ser adicionada. A moeda correspondente é então 
+     * criada e adicionada ao cofrinho.
+     * </p>
      * 
      * @param scanner  O objeto Scanner usado para obter a entrada do usuário.
      * @param cofrinho O objeto Cofrinho onde a moeda será adicionada.
@@ -100,7 +112,20 @@ public class Main {
                 System.out.println("Moeda inválida.");
         }
     }
-    
+
+    /**
+     * Remove um valor específico de uma moeda existente no cofrinho.
+     * <p>
+     * Este método permite que o usuário escolha o tipo de moeda (Dólar, Euro, Real)
+     * e o valor que ele deseja subtrair do saldo total dessa moeda. Se a moeda com o
+     * valor especificado existir e tiver saldo suficiente, o valor será subtraído da moeda.
+     * Caso contrário, uma mensagem de erro será exibida.
+     * </p>
+     * 
+     * @param scanner  O objeto Scanner usado para obter a entrada do usuário.
+     * @param cofrinho O objeto Cofrinho de onde o valor será subtraído.
+     */
+
     private static void removerMoeda(Scanner scanner, Cofrinho cofrinho) {
         System.out.println("Escolha a moeda para subtrair valor:");
         System.out.println("1 - Dólar");
@@ -114,7 +139,7 @@ public class Main {
     
         switch (tipoMoeda) {
             case 1:
-                moedaParaRemover = new Dolar(0); // Passamos 0 pois o valor será ajustado pelo método de remoção
+                moedaParaRemover = new Dolar(0); // Passando 0 pois o valor será ajustado pelo método de remoção
                 break;
             case 2:
                 moedaParaRemover = new Euro(0); 
