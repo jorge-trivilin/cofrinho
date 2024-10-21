@@ -3,13 +3,13 @@ package com.cofrinho;
 import java.util.ArrayList;
 
 /**
- * A classe Cofrinho representa um cofrinho que armazena diferentes tipos de moedas.
+ * The Cofrinho class represents a piggy bank that stores different types of coins.
  * 
  * <p>
- * A classe permite adicionar e remover moedas do cofrinho, listar todas as moedas armazenadas,
- * e calcular o valor total de todas as moedas convertidas para a moeda Real.
- * As moedas armazenadas são instâncias da classe abstrata {@link Moeda} e suas subclasses, 
- * como {@link Dolar}, {@link Euro} e {@link Real}.
+ * The class allows adding and removing coins from the piggy bank, listing all stored coins,
+ * and calculating the total value of all coins converted to Brazilian Real.
+ * The stored coins are instances of the abstract class {@link Moeda} and its subclasses,
+ * such as {@link Dolar}, {@link Euro}, and {@link Real}.
  * </p>
  */
 
@@ -17,93 +17,88 @@ public class Cofrinho {
     private ArrayList<Moeda> moedas;
 
     /**
-     * Construtor da classe Cofrinho.
+     * Constructor for the Cofrinho class.
      * <p>
-     * Inicializa o cofrinho com uma lista vazia de moedas.
+     * Initializes the piggy bank with an empty list of coins.
      * </p>
      */
-
     public Cofrinho() {
         this.moedas = new ArrayList<>();
     }
 
     /**
-     * Adiciona uma nova moeda ao cofrinho.
+     * Adds a new coin to the piggy bank.
      * <p>
-     * A moeda é adicionada à lista interna de moedas, e uma mensagem é exibida
-     * confirmando a adição, com o valor da moeda e seu tipo (ex.: Dólar, Euro, Real).
+     * The coin is added to the internal list of coins, and a message is displayed
+     * confirming the addition, showing the coin's value and type (e.g., Dollar, Euro, Real).
      * </p>
      * 
-     * @param moeda A moeda a ser adicionada, que deve ser uma instância de uma
-     *              classe que herda de {@link Moeda}.
+     * @param moeda The coin to be added, which must be an instance of a
+     *              class that inherits from {@link Moeda}.
      */
-
     public void adicionar(Moeda moeda) {
         moedas.add(moeda);
-        System.out.println("Moeda adicionada: " + moeda.getValor() + " " + moeda.getClass().getSimpleName());
+        System.out.println("Coin added: " + moeda.getValor() + " " + moeda.getClass().getSimpleName());
     }
 
     /**
-     * Subtrai um valor específico de uma moeda existente no cofrinho.
+     * Subtracts a specific value from an existing coin in the piggy bank.
      * <p>
-     * Este método encontra a moeda do tipo correspondente no cofrinho e, se o saldo
-     * for suficiente, subtrai o valor indicado do saldo da moeda. Se o valor for maior 
-     * que o saldo disponível, uma mensagem de erro é exibida.
+     * This method finds the corresponding type of coin in the piggy bank and, if there is enough balance,
+     * subtracts the indicated value from the coin's balance. If the value is greater
+     * than the available balance, an error message is displayed.
      * </p>
      * 
-     * @param moeda A moeda do tipo desejado para realizar a subtração (Dólar, Euro, Real).
-     * @param valor O valor a ser subtraído do saldo da moeda.
-     * @return {@code true} se o valor foi subtraído com sucesso, {@code false} se não havia
-     *         saldo suficiente ou se a moeda não foi encontrada.
+     * @param moeda The coin type to perform the subtraction on (Dollar, Euro, Real).
+     * @param valor The amount to be subtracted from the coin's balance.
+     * @return {@code true} if the value was successfully subtracted, {@code false} if there was
+     *         insufficient balance or the coin was not found.
      */
-
     public boolean remover(Moeda moeda, double valor) {
         for (Moeda m : moedas) {
-            if (m.getClass() == moeda.getClass()) { // Encontramos o tipo certo de moeda
+            if (m.getClass() == moeda.getClass()) { // Found the right coin type
                 if (m.getValor() >= valor) {
                     m.subtrairValor(valor);
-                    System.out.println("Subtraído " + valor + " da moeda " + m.getClass().getSimpleName());
+                    System.out.println("Subtracted " + valor + " from the coin " + m.getClass().getSimpleName());
                     return true;
                 } else {
-                    System.out.println("Não há saldo suficiente para subtrair.");
+                    System.out.println("Insufficient balance to subtract.");
                     return false;
                 }
             }
         }
-        System.out.println("Moeda não encontrada.");
+        System.out.println("Coin not found.");
         return false;
     }
 
     /**
-     * Lista todas as moedas presentes no cofrinho.
+     * Lists all the coins present in the piggy bank.
      * <p>
-     * O método exibe informações sobre todas as moedas armazenadas no cofrinho.
-     * Se o cofrinho estiver vazio, uma mensagem informando isso será exibida.
+     * The method displays information about all the coins stored in the piggy bank.
+     * If the piggy bank is empty, a message indicating that will be displayed.
      * </p>
      */
-
     public void listagemMoedas() {
         if (moedas.isEmpty()) {
-            System.out.println("Cofrinho vazio.");
+            System.out.println("Piggy bank is empty.");
             return;
         }
 
-        System.out.println("Moedas no cofrinho:");
+        System.out.println("Coins in the piggy bank:");
         for (Moeda moeda : moedas) {
             moeda.info();
         }
     }
 
     /**
-     * Calcula o valor total de todas as moedas no cofrinho convertidas para Real.
+     * Calculates the total value of all the coins in the piggy bank converted to Brazilian Real.
      * <p>
-     * O método percorre todas as moedas do cofrinho e soma seus valores convertidos para Reais,
-     * usando o método {@link Moeda#converter()} de cada moeda.
+     * The method iterates through all the coins in the piggy bank and sums their values converted to Real,
+     * using the {@link Moeda#converter()} method for each coin.
      * </p>
      * 
-     * @return O valor total convertido em Reais de todas as moedas no cofrinho.
+     * @return The total value in Brazilian Real of all the coins in the piggy bank.
      */
-
     public double totalConvertido() {
         double total = 0;
         for (Moeda moeda : moedas) {
