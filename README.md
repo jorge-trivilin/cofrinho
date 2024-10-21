@@ -66,7 +66,7 @@ mvn clean package
 Depois que o JAR for gerado na pasta `target/`, você pode rodá-lo com o comando:
 
 ```bash
-java -jar target/cofrinho-1.0-SNAPSHOT.jar
+java -jar cofrinho.jar
 ```
 
 Isso iniciará o programa e mostrará o menu de operações no terminal.
