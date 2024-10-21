@@ -1,52 +1,48 @@
 package com.cofrinho;
 
 /**
- * A classe Dolar representa uma moeda do tipo Dólar.
+ * The Dolar class represents a currency of type Dollar.
  * 
  * <p>
- * Esta classe herda de {@link Moeda} e implementa os métodos abstratos para
- * exibir informações da moeda e converter o valor de Dólar para Real. O valor
- * de conversão utilizado é 1 Dólar = 5.00 Reais (este valor pode ser ajustado conforme necessário).
+ * This class inherits from {@link Moeda} and implements the abstract methods to
+ * display information about the currency and convert the value from Dollar to Real. 
+ * The conversion rate used is 1 Dollar = 5.00 Reais (this value can be adjusted as needed).
  * </p>
  */
 
 public class Dolar extends Moeda {
 
     /**
-     * Construtor da classe Dolar.
+     * Constructor for the Dolar class.
      * 
-     * @param valor O valor da moeda em Dólares.
+     * @param valor The value of the currency in Dollars.
      */
-
     public Dolar(double valor) {
         super(valor);
     }
 
-     /**
-     * Exibe as informações da moeda.
+    /**
+     * Displays information about the currency.
      * <p>
-     * Este método imprime o tipo da moeda (Dólar) e o valor da moeda em Dólares.
+     * This method prints the type of currency (Dollar) and the value of the currency in Dollars.
      * </p>
      */
-
     @Override
     public void info() {
-        System.out.println("Dólar - Valor: $" + valor);
+        System.out.println("Dollar - Value: $" + valor);
     }
 
     /**
-     * Converte o valor da moeda de Dólar para Real.
+     * Converts the value of the currency from Dollar to Real.
      * <p>
-     * O valor de conversão utilizado é 1 Dólar = 5.00 Reais. Este método retorna
-     * o valor equivalente em Reais.
+     * The conversion rate used is 1 Dollar = 5.00 Reais. This method returns
+     * the equivalent value in Reais.
      * </p>
      * 
-     * @return O valor convertido de Dólar para Real.
+     * @return The converted value from Dollar to Real.
      */
-
     @Override
     public double converter() {
         return valor * 5.00;
     }
 }
-

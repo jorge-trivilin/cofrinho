@@ -1,29 +1,29 @@
 package com.cofrinho;
 
 /**
- * A classe Real representa uma moeda do tipo Real.
+ * The Real class represents a currency of type Real.
  * 
  * <p>
- * Esta classe herda de {@link Moeda} e implementa os métodos abstratos para
- * exibir informações da moeda e converter o valor de Real para Real (sem conversão).
- * Como o valor já está em Reais, o método de conversão simplesmente retorna o valor sem alterações.
+ * This class inherits from {@link Moeda} and implements the abstract methods to
+ * display information about the currency and convert the value from Real to Real (no conversion).
+ * Since the value is already in Reais, the conversion method simply returns the value without changes.
  * </p>
  */
 public class Real extends Moeda {
 
     /**
-     * Construtor da classe Real.
+     * Constructor for the Real class.
      * 
-     * @param valor O valor da moeda em Reais.
+     * @param valor The value of the currency in Reais.
      */
     public Real(double valor) {
         super(valor);
     }
 
     /**
-     * Exibe as informações da moeda.
+     * Displays information about the currency.
      * <p>
-     * Este método imprime o tipo da moeda (Real) e o valor da moeda em Reais.
+     * This method prints the type of currency (Real) and the value of the currency in Reais.
      * </p>
      */
     @Override
@@ -32,13 +32,13 @@ public class Real extends Moeda {
     }
 
     /**
-     * Retorna o valor da moeda em Reais.
+     * Returns the value of the currency in Reais.
      * <p>
-     * Como o valor já está em Reais, este método apenas retorna o valor da moeda
-     * sem realizar nenhuma conversão adicional.
+     * Since the value is already in Reais, this method simply returns the currency's value
+     * without performing any additional conversion.
      * </p>
      * 
-     * @return O valor da moeda em Reais.
+     * @return The value of the currency in Reais.
      */
     @Override
     public double converter() {

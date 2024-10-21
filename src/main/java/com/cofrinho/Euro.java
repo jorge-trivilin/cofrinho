@@ -1,29 +1,29 @@
 package com.cofrinho;
 
 /**
- * A classe Euro representa uma moeda do tipo Euro.
+ * The Euro class represents a currency of type Euro.
  * 
  * <p>
- * Esta classe herda de {@link Moeda} e implementa os métodos abstratos para
- * exibir informações da moeda e converter o valor de Euro para Real. O valor
- * de conversão utilizado é 1 Euro = 6.00 Reais (este valor pode ser ajustado conforme necessário).
+ * This class inherits from {@link Moeda} and implements the abstract methods to
+ * display information about the currency and convert the value from Euro to Real. 
+ * The conversion rate used is 1 Euro = 6.00 Reais (this value can be adjusted as needed).
  * </p>
  */
 public class Euro extends Moeda {
 
     /**
-     * Construtor da classe Euro.
+     * Constructor for the Euro class.
      * 
-     * @param valor O valor da moeda em Euros.
+     * @param valor The value of the currency in Euros.
      */
     public Euro(double valor) {
         super(valor);
     }
 
     /**
-     * Exibe as informações da moeda.
+     * Displays information about the currency.
      * <p>
-     * Este método imprime o tipo da moeda (Euro) e o valor da moeda em Euros.
+     * This method prints the type of currency (Euro) and the value of the currency in Euros.
      * </p>
      */
     @Override
@@ -32,13 +32,13 @@ public class Euro extends Moeda {
     }
 
     /**
-     * Converte o valor da moeda de Euro para Real.
+     * Converts the value of the currency from Euro to Real.
      * <p>
-     * O valor de conversão utilizado é 1 Euro = 6.00 Reais. Este método retorna
-     * o valor equivalente em Reais.
+     * The conversion rate used is 1 Euro = 6.00 Reais. This method returns
+     * the equivalent value in Reais.
      * </p>
      * 
-     * @return O valor convertido de Euro para Real.
+     * @return The converted value from Euro to Real.
      */
     @Override
     public double converter() {

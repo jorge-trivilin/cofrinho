@@ -1,87 +1,87 @@
 package com.cofrinho;
 
 /**
- * A classe abstrata Moeda define o comportamento básico de uma moeda.
+ * The abstract Moeda (Currency) class defines the basic behavior of a currency.
  * 
  * <p>
- * Esta classe é a base para diferentes tipos de moedas, como {@link Dolar}, {@link Euro}
- * e {@link Real}. Ela define os atributos e métodos comuns que todas as moedas compartilham,
- * como o valor da moeda, a exibição de informações e a conversão para Reais. 
- * As classes que herdam de {@link Moeda} devem implementar os métodos abstratos {@code info()} 
- * e {@code converter()} para fornecer o comportamento específico de cada moeda.
+ * This class serves as the base for different types of currencies, such as {@link Dolar}, {@link Euro}
+ * and {@link Real}. It defines the attributes and common methods that all currencies share,
+ * such as the currency value, displaying information, and conversion to Brazilian Real.
+ * Classes that inherit from {@link Moeda} must implement the abstract methods {@code info()} 
+ * and {@code converter()} to provide the specific behavior for each currency.
  * </p>
  */
 public abstract class Moeda {
 
     /**
-     * O valor da moeda.
+     * The value of the currency.
      */
     protected double valor;
 
     /**
-     * Construtor da classe Moeda.
+     * Constructor for the Moeda class.
      * 
-     * @param valor O valor da moeda.
+     * @param valor The value of the currency.
      */
     public Moeda(double valor) {
         this.valor = valor;
     }
 
     /**
-     * Retorna o valor da moeda.
+     * Returns the value of the currency.
      * 
-     * @return O valor da moeda.
+     * @return The value of the currency.
      */
     public double getValor() {
         return valor;
     }
 
     /**
-     * Método abstrato para exibir as informações da moeda.
+     * Abstract method to display information about the currency.
      * <p>
-     * Este método deve ser implementado pelas subclasses para exibir o tipo
-     * da moeda e o valor correspondente.
+     * This method must be implemented by the subclasses to display the type
+     * of currency and its corresponding value.
      * </p>
      */
     public abstract void info();
 
     /**
-     * Método abstrato para converter o valor da moeda para Real.
+     * Abstract method to convert the value of the currency to Brazilian Real.
      * <p>
-     * Este método deve ser implementado pelas subclasses para fornecer a lógica
-     * de conversão específica para cada tipo de moeda.
+     * This method must be implemented by the subclasses to provide the logic
+     * for converting the specific type of currency.
      * </p>
      * 
-     * @return O valor convertido para Reais.
+     * @return The value converted to Brazilian Real.
      */
     public abstract double converter();
 
     /**
-     * Subtrai um valor da moeda, se o valor for menor ou igual ao saldo atual da moeda.
+     * Subtracts a value from the currency, if the value is less than or equal to the current balance of the currency.
      * <p>
-     * Se o valor a ser subtraído for maior que o saldo da moeda, uma mensagem de erro é exibida.
+     * If the value to be subtracted is greater than the currency's balance, an error message is displayed.
      * </p>
      * 
-     * @param valor O valor a ser subtraído da moeda.
+     * @param valor The value to be subtracted from the currency.
      */
     public void subtrairValor(double valor) {
         if (valor <= this.valor) {
             this.valor -= valor;
         } else {
-            System.out.println("Valor de subtração maior do que o valor da moeda.");
+            System.out.println("The subtraction value is greater than the currency's balance.");
         }
     }
 
     /**
-     * Compara se duas moedas são iguais com base no valor e no tipo da moeda.
+     * Compares whether two currencies are equal based on their value and type.
      * <p>
-     * Duas moedas são consideradas iguais se tiverem o mesmo tipo (classe)
-     * e o mesmo valor.
+     * Two currencies are considered equal if they have the same type (class)
+     * and the same value.
      * </p>
      * 
-     * @param obj O objeto a ser comparado.
-     * @return {@code true} se as moedas forem do mesmo tipo e tiverem o mesmo valor, 
-     *         {@code false} caso contrário.
+     * @param obj The object to be compared.
+     * @return {@code true} if the currencies are of the same type and have the same value,
+     *         {@code false} otherwise.
      */
     @Override
     public boolean equals(Object obj) {
@@ -92,13 +92,13 @@ public abstract class Moeda {
     }
 
     /**
-     * Retorna o código hash da moeda, com base no valor.
+     * Returns the hash code of the currency, based on its value.
      * <p>
-     * Este método garante que as moedas com o mesmo valor tenham o mesmo código
-     * hash, facilitando a comparação em coleções que utilizam hashing.
+     * This method ensures that currencies with the same value have the same hash
+     * code, facilitating comparisons in collections that use hashing.
      * </p>
      * 
-     * @return O código hash baseado no valor da moeda.
+     * @return The hash code based on the currency's value.
      */
     @Override
     public int hashCode() {

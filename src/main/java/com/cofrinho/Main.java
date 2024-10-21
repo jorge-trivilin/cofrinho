@@ -3,41 +3,41 @@ package com.cofrinho;
 import java.util.Scanner;
 
 /**
- * Classe principal que implementa o sistema de gerenciamento de um cofrinho de moedas.
+ * Main class that implements the coin piggy bank management system.
  * 
  * <p>
- * Este programa simula um cofrinho que permite ao usuário adicionar moedas de diferentes
- * tipos (Dólar, Euro, Real), remover uma quantidade específica de uma moeda e listar todas
- * as moedas presentes no cofrinho. Além disso, o programa pode calcular o valor total
- * convertido para Reais de todas as moedas armazenadas.
+ * This program simulates a piggy bank that allows the user to add coins of different
+ * types (Dollar, Euro, Real), remove a specific amount from a coin, and list all 
+ * the coins present in the piggy bank. Additionally, the program can calculate the total
+ * value of all stored coins converted to Brazilian Real.
  * </p>
  * 
  * <p>
- * A interação com o usuário é realizada por meio de um menu de opções que inclui:
+ * The user interacts through an options menu that includes:
  * </p>
  * <ul>
- * <li>Adicionar uma moeda ao cofrinho, especificando o tipo e o valor da moeda.</li>
- * <li>Remover uma quantidade específica de uma moeda existente no cofrinho.</li>
- * <li>Listar todas as moedas presentes no cofrinho.</li>
- * <li>Calcular o valor total de todas as moedas convertidas em Reais.</li>
- * <li>Encerrar o programa.</li>
+ * <li>Add a coin to the piggy bank, specifying the type and value of the coin.</li>
+ * <li>Remove a specific amount from an existing coin in the piggy bank.</li>
+ * <li>List all the coins in the piggy bank.</li>
+ * <li>Calculate the total value of all coins converted to Brazilian Real.</li>
+ * <li>Exit the program.</li>
  * </ul>
  * 
  * <p>
- * O programa continua executando até que o usuário escolha a opção de sair.
+ * The program keeps running until the user chooses the exit option.
  * </p>
  */
 
 public class Main {
     /**
-     * Método principal que inicia a aplicação de gerenciamento do cofrinho.
+     * Main method that starts the piggy bank management application.
      * <p>
-     * O usuário interage com um menu que permite adicionar moedas, remover
-     * valores de moedas, listar todas as moedas e calcular o valor total convertido
-     * em Reais. O loop do menu continua até que o usuário selecione a opção de sair.
+     * The user interacts with a menu that allows adding coins, removing
+     * amounts from coins, listing all the coins, and calculating the total value 
+     * converted to Brazilian Real. The menu loop continues until the user selects the exit option.
      * </p>
      * 
-     * @param args Argumentos da linha de comando (não utilizados).
+     * @param args Command line arguments (not used).
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -46,11 +46,11 @@ public class Main {
 
         do {
             System.out.println("Menu:");
-            System.out.println("1 - Adicionar moeda");
-            System.out.println("2 - Remover moeda");
-            System.out.println("3 - Listar moedas");
-            System.out.println("4 - Calcular valor total convertido para Real");
-            System.out.println("5 - Sair");
+            System.out.println("1 - Add coin");
+            System.out.println("2 - Remove coin");
+            System.out.println("3 - List coins");
+            System.out.println("4 - Calculate total value converted to Real");
+            System.out.println("5 - Exit");
             opcao = scanner.nextInt();
 
             switch (opcao) {
@@ -64,38 +64,38 @@ public class Main {
                     cofrinho.listagemMoedas();
                     break;
                 case 4:
-                    System.out.printf("Total convertido para Real: R$%.2f%n", cofrinho.totalConvertido());
+                    System.out.printf("Total converted to Real: R$%.2f%n", cofrinho.totalConvertido());
                     break;
                 case 5:
-                    System.out.println("Encerrando...");
+                    System.out.println("Exiting...");
                     break;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("Invalid option.");
             }
         } while (opcao != 5);
 
         scanner.close();
     }
 
-     /**
-     * Adiciona uma moeda ao cofrinho com base na escolha do usuário.
+    /**
+     * Adds a coin to the piggy bank based on the user's choice.
      * <p>
-     * Este método apresenta ao usuário uma lista de tipos de moedas (Dólar, Euro, Real)
-     * e solicita o valor da moeda a ser adicionada. A moeda correspondente é então 
-     * criada e adicionada ao cofrinho.
+     * This method presents the user with a list of currency types (Dollar, Euro, Real)
+     * and asks for the value of the coin to be added. The corresponding coin is then 
+     * created and added to the piggy bank.
      * </p>
      * 
-     * @param scanner  O objeto Scanner usado para obter a entrada do usuário.
-     * @param cofrinho O objeto Cofrinho onde a moeda será adicionada.
+     * @param scanner  The Scanner object used to get user input.
+     * @param cofrinho The Cofrinho object where the coin will be added.
      */
     private static void adicionarMoeda(Scanner scanner, Cofrinho cofrinho) {
-        System.out.println("Escolha a moeda:");
-        System.out.println("1 - Dólar");
+        System.out.println("Choose a currency:");
+        System.out.println("1 - Dollar");
         System.out.println("2 - Euro");
         System.out.println("3 - Real");
         int tipoMoeda = scanner.nextInt();
 
-        System.out.println("Informe o valor:");
+        System.out.println("Enter the value:");
         double valor = scanner.nextDouble();
         
         switch (tipoMoeda) {
@@ -109,37 +109,36 @@ public class Main {
                 cofrinho.adicionar(new Real(valor));
                 break;
             default:
-                System.out.println("Moeda inválida.");
+                System.out.println("Invalid currency.");
         }
     }
 
     /**
-     * Remove um valor específico de uma moeda existente no cofrinho.
+     * Removes a specific amount from an existing coin in the piggy bank.
      * <p>
-     * Este método permite que o usuário escolha o tipo de moeda (Dólar, Euro, Real)
-     * e o valor que ele deseja subtrair do saldo total dessa moeda. Se a moeda com o
-     * valor especificado existir e tiver saldo suficiente, o valor será subtraído da moeda.
-     * Caso contrário, uma mensagem de erro será exibida.
+     * This method allows the user to choose the type of coin (Dollar, Euro, Real)
+     * and the amount they wish to subtract from the total balance of that coin. If the coin
+     * with the specified value exists and has sufficient balance, the amount will be subtracted.
+     * Otherwise, an error message will be displayed.
      * </p>
      * 
-     * @param scanner  O objeto Scanner usado para obter a entrada do usuário.
-     * @param cofrinho O objeto Cofrinho de onde o valor será subtraído.
+     * @param scanner  The Scanner object used to get user input.
+     * @param cofrinho The Cofrinho object from which the amount will be subtracted.
      */
-
     private static void removerMoeda(Scanner scanner, Cofrinho cofrinho) {
-        System.out.println("Escolha a moeda para subtrair valor:");
-        System.out.println("1 - Dólar");
+        System.out.println("Choose a currency to subtract value from:");
+        System.out.println("1 - Dollar");
         System.out.println("2 - Euro");
         System.out.println("3 - Real");
         int tipoMoeda = scanner.nextInt();
     
-        System.out.println("Informe o valor da moeda a subtrair:");
+        System.out.println("Enter the amount to subtract:");
         double valor = scanner.nextDouble();
         Moeda moedaParaRemover = null;
     
         switch (tipoMoeda) {
             case 1:
-                moedaParaRemover = new Dolar(0); // Passando 0 pois o valor será ajustado pelo método de remoção
+                moedaParaRemover = new Dolar(0); // Passing 0 since the value will be adjusted by the removal method
                 break;
             case 2:
                 moedaParaRemover = new Euro(0); 
@@ -148,14 +147,14 @@ public class Main {
                 moedaParaRemover = new Real(0); 
                 break;
             default:
-                System.out.println("Moeda inválida.");
+                System.out.println("Invalid currency.");
                 return;
         }
     
-        // Tenta subtrair o valor da moeda no cofrinho
+        // Attempts to subtract the value from the coin in the piggy bank
         boolean sucesso = cofrinho.remover(moedaParaRemover, valor);
         if (!sucesso) {
-            System.out.println("Não foi possível subtrair o valor da moeda. Verifique se ela existe no cofrinho ou se há saldo suficiente.");
+            System.out.println("Could not subtract the value from the coin. Check if it exists in the piggy bank or if there is sufficient balance.");
         }
     }
 }
