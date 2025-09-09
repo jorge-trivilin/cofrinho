@@ -26,6 +26,14 @@ public class PiggyBank {
      */
     public void add(Currency currency) {
         if (currency == null) throw new NullPointerException("currency");
+        // If we already have a currency of the same runtime type, merge values instead
+        for (Currency c : currencies) {
+            if (c.getClass() == currency.getClass()) {
+                c.deposit(currency.getValue());
+                System.out.println("Merged: " + currency.getValue() + " into existing " + c.getClass().getSimpleName());
+                return;
+            }
+        }
         currencies.add(currency);
         System.out.println("Added: " + currency.getValue() + " " + currency.getClass().getSimpleName());
     }

@@ -69,6 +69,17 @@ public abstract class Currency {
         }
     }
 
+    /**
+     * Adds {@code amount} to this currency balance.
+     *
+     * @param amount the amount to add; must be non-negative
+     * @throws IllegalArgumentException if {@code amount} is negative
+     */
+    public void deposit(double amount) {
+        if (amount < 0) throw new IllegalArgumentException("amount must be non-negative");
+        this.value += amount;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
