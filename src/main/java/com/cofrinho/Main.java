@@ -3,45 +3,31 @@ package com.cofrinho;
 import java.util.Scanner;
 
 /**
- * Main class that implements the coin piggy bank management system.
- * 
- * <p>
- * This program simulates a piggy bank that allows the user to add coins of different
- * types (Dollar, Euro, Real), remove a specific amount from a coin, and list all 
- * the coins present in the piggy bank. Additionally, the program can calculate the total
- * value of all stored coins converted to Brazilian Real.
- * </p>
- * 
- * <p>
- * The user interacts through an options menu that includes:
- * </p>
- * <ul>
- * <li>Add a coin to the piggy bank, specifying the type and value of the coin.</li>
- * <li>Remove a specific amount from an existing coin in the piggy bank.</li>
- * <li>List all the coins in the piggy bank.</li>
- * <li>Calculate the total value of all coins converted to Brazilian Real.</li>
- * <li>Exit the program.</li>
- * </ul>
- * 
- * <p>
- * The program keeps running until the user chooses the exit option.
- * </p>
+ * Command-line front-end for the piggy bank application.
+ *
+ * <p>This class provides a simple, menu-driven user interface to interact with
+ * a {@link PiggyBank}: add currencies, withdraw amounts from an existing
+ * stored currency type, list stored currencies, and compute the total value in
+ * Brazilian Real (BRL).</p>
+ *
+ * <p>The implementation is intentionally minimal and designed for demonstration
+ * and learning purposes; input validation is basic and invalid input may throw
+ * runtime exceptions (for example, {@link java.util.InputMismatchException}).</p>
+ *
+ * @see PiggyBank
  */
 
 public class Main {
     /**
-     * Main method that starts the piggy bank management application.
-     * <p>
-     * The user interacts with a menu that allows adding coins, removing
-     * amounts from coins, listing all the coins, and calculating the total value 
-     * converted to Brazilian Real. The menu loop continues until the user selects the exit option.
-     * </p>
-     * 
-     * @param args Command line arguments (not used).
+     * Application entry point. Presents a short menu loop and executes the
+     * selected action until the user chooses to exit.
+     *
+     * @param args command-line arguments (ignored)
+     * @throws java.util.InputMismatchException if the user types non-numeric input when a number is expected
      */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Cofrinho cofrinho = new Cofrinho();
+    Scanner scanner = new Scanner(System.in);
+    PiggyBank piggy = new PiggyBank();
         int opcao;
 
         do {
@@ -55,16 +41,16 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    adicionarMoeda(scanner, cofrinho);
+                    addCurrency(scanner, piggy);
                     break;
                 case 2:
-                    removerMoeda(scanner, cofrinho);
+                    withdrawCurrency(scanner, piggy);
                     break;
                 case 3:
-                    cofrinho.listagemMoedas();
+                    piggy.list();
                     break;
                 case 4:
-                    System.out.printf("Total converted to Real: R$%.2f%n", cofrinho.totalConvertido());
+                    System.out.printf("Total converted to Real: R$%.2f%n", piggy.totalInBRL());
                     break;
                 case 5:
                     System.out.println("Exiting...");
@@ -78,17 +64,14 @@ public class Main {
     }
 
     /**
-     * Adds a coin to the piggy bank based on the user's choice.
-     * <p>
-     * This method presents the user with a list of currency types (Dollar, Euro, Real)
-     * and asks for the value of the coin to be added. The corresponding coin is then 
-     * created and added to the piggy bank.
-     * </p>
-     * 
-     * @param scanner  The Scanner object used to get user input.
-     * @param cofrinho The Cofrinho object where the coin will be added.
+     * Prompts the user to choose a currency type and a value, then adds the
+     * created currency instance to {@code piggy}.
+     *
+     * @param scanner a Scanner used to read user input; must not be null
+     * @param piggy the PiggyBank that will receive the new currency; must not be null
+     * @throws java.util.InputMismatchException if the user inputs a non-numeric value when a number is expected
      */
-    private static void adicionarMoeda(Scanner scanner, Cofrinho cofrinho) {
+    private static void addCurrency(Scanner scanner, PiggyBank piggy) {
         System.out.println("Choose a currency:");
         System.out.println("1 - Dollar");
         System.out.println("2 - Euro");
@@ -100,13 +83,13 @@ public class Main {
         
         switch (tipoMoeda) {
             case 1:
-                cofrinho.adicionar(new Dolar(valor));
+                piggy.add(new Dollar(valor));
                 break;
             case 2:
-                cofrinho.adicionar(new Euro(valor));
+                piggy.add(new Euro(valor));
                 break;
             case 3:
-                cofrinho.adicionar(new Real(valor));
+                piggy.add(new Real(valor));
                 break;
             default:
                 System.out.println("Invalid currency.");
@@ -114,47 +97,42 @@ public class Main {
     }
 
     /**
-     * Removes a specific amount from an existing coin in the piggy bank.
-     * <p>
-     * This method allows the user to choose the type of coin (Dollar, Euro, Real)
-     * and the amount they wish to subtract from the total balance of that coin. If the coin
-     * with the specified value exists and has sufficient balance, the amount will be subtracted.
-     * Otherwise, an error message will be displayed.
-     * </p>
-     * 
-     * @param scanner  The Scanner object used to get user input.
-     * @param cofrinho The Cofrinho object from which the amount will be subtracted.
+     * Prompts the user for a currency type and an amount, then attempts to
+     * withdraw the amount from the first stored currency of that type.
+     *
+     * @param scanner a Scanner used to read user input; must not be null
+     * @param piggy the PiggyBank to withdraw from; must not be null
+     * @throws java.util.InputMismatchException if the user inputs a non-numeric value when a number is expected
      */
-    private static void removerMoeda(Scanner scanner, Cofrinho cofrinho) {
-        System.out.println("Choose a currency to subtract value from:");
+    private static void withdrawCurrency(Scanner scanner, PiggyBank piggy) {
+        System.out.println("Choose a currency to withdraw from:");
         System.out.println("1 - Dollar");
         System.out.println("2 - Euro");
         System.out.println("3 - Real");
         int tipoMoeda = scanner.nextInt();
-    
-        System.out.println("Enter the amount to subtract:");
+
+        System.out.println("Enter the amount to withdraw:");
         double valor = scanner.nextDouble();
-        Moeda moedaParaRemover = null;
-    
+        Currency currencyType = null;
+
         switch (tipoMoeda) {
             case 1:
-                moedaParaRemover = new Dolar(0); // Passing 0 since the value will be adjusted by the removal method
+                currencyType = new Dollar(0);
                 break;
             case 2:
-                moedaParaRemover = new Euro(0); 
+                currencyType = new Euro(0);
                 break;
             case 3:
-                moedaParaRemover = new Real(0); 
+                currencyType = new Real(0);
                 break;
             default:
                 System.out.println("Invalid currency.");
                 return;
         }
-    
-        // Attempts to subtract the value from the coin in the piggy bank
-        boolean sucesso = cofrinho.remover(moedaParaRemover, valor);
-        if (!sucesso) {
-            System.out.println("Could not subtract the value from the coin. Check if it exists in the piggy bank or if there is sufficient balance.");
+
+        boolean success = piggy.withdraw(currencyType, valor);
+        if (!success) {
+            System.out.println("Could not withdraw the value. Check if it exists in the piggy bank or if there is sufficient balance.");
         }
     }
 }

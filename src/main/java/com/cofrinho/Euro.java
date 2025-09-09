@@ -1,47 +1,33 @@
 package com.cofrinho;
 
 /**
- * The Euro class represents a currency of type Euro.
- * 
- * <p>
- * This class inherits from {@link Moeda} and implements the abstract methods to
- * display information about the currency and convert the value from Euro to Real. 
- * The conversion rate used is 1 Euro = 6.00 Reais (this value can be adjusted as needed).
- * </p>
+ * Euro (EUR) currency implementation.
+ *
+ * <p>Uses a fixed conversion rate to BRL. The rate is currently hard-coded as
+ * 6.00 BRL per 1 EUR; change the implementation if a different or dynamic rate
+ * is required.</p>
  */
-public class Euro extends Moeda {
-
+public class Euro extends Currency {
     /**
-     * Constructor for the Euro class.
-     * 
-     * @param valor The value of the currency in Euros.
+     * Creates a Euro amount.
+     *
+     * @param value the amount in EUR
      */
-    public Euro(double valor) {
-        super(valor);
+    public Euro(double value) { super(value); }
+
+    /** Prints the amount in Euros to standard output. */
+    @Override
+    public void printInfo() {
+        System.out.println("Euro: " + value);
     }
 
     /**
-     * Displays information about the currency.
-     * <p>
-     * This method prints the type of currency (Euro) and the value of the currency in Euros.
-     * </p>
+     * Converts EUR to BRL using the fixed internal rate (6.00 BRL = 1 EUR).
+     *
+     * @return equivalent amount in BRL
      */
     @Override
-    public void info() {
-        System.out.println("Euro: " + valor);
-    }
-
-    /**
-     * Converts the value of the currency from Euro to Real.
-     * <p>
-     * The conversion rate used is 1 Euro = 6.00 Reais. This method returns
-     * the equivalent value in Reais.
-     * </p>
-     * 
-     * @return The converted value from Euro to Real.
-     */
-    @Override
-    public double converter() {
-        return valor * 6.00;
+    public double toBRL() {
+        return value * 6.00;
     }
 }
